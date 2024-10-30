@@ -9,7 +9,7 @@ each Car type will have a unique attribute nad methods to handle them. We then h
 will handle the renting operations, allowing users to rent and return a Car while calculating the cost of the rental
 
 # Contents
-in my Cars class
+Vehicle class
 - attributes consist of make, model,yea,rentalPrice
 - methods: getMake(), getModel(), getRentalRate()
 
