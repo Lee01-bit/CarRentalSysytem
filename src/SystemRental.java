@@ -3,63 +3,84 @@ import java.util.List;
 
 public class SystemRental {
 
-    private static List<Car>availableCars;
-    private List<Car>rentalCars;
+    private static List<SpecificCar> availableSpecificCars;
+    private final List<SpecificCar> rentalSpecificCars;
+    private static List<Motorcycles> availableMotorcycles;
 
     public SystemRental() {
-        availableCars = new ArrayList<Car>();
-        rentalCars = new ArrayList<Car>();
+        availableSpecificCars = new ArrayList<SpecificCar>();
+        rentalSpecificCars = new ArrayList<SpecificCar>();
+        availableMotorcycles = new ArrayList<Motorcycles>();
     }
 
     // this will add vehicles to the rental system
 
-    public void addCar(Cars cars) {
-        availableCars.add((Car) cars);
+    public void addCar(SpecificCar car) {
+        if (car != null){
+            availableSpecificCars.add(car);
+            System.out.println(car.getMake() + " " + car.getModel() + "  " + car.getYear() + "Added to available cars");
+
+        }else{
+            System.out.println("Car is null");
+        }
+
+
+    }
+    public void addMotorcycle(Motorcycles motorcycle) {
+      if(motorcycle != null){  availableMotorcycles.add(motorcycle);
+        System.out.println(motorcycle.getMake() + " " + motorcycle.getModel() + "Added to available cars " + motorcycle.getYear());
+    } else {
+          System.out.println("Cannot add a null motorcycle");
+      }
     }
 
-    public static List<Car> getAvailableCars() {
-        return availableCars;
+    public static List<SpecificCar> getAvailableCars() {
+        return availableSpecificCars;
     }
-    public List<Car> getRentalCars() {
-        return rentalCars;
+    public List<SpecificCar> getRentalCars() {
+        return rentalSpecificCars;
     }
 
     //To start renting a Car
-    public void rentVehicle(Car car) {
-        if(availableCars.contains(car)) {
-            availableCars.remove(car);
-            availableCars.add(car);
+    public void rentVehicle(SpecificCar specificCar) {
+        if(availableSpecificCars.contains(specificCar)) {
+            availableSpecificCars.remove(specificCar);
+            rentalSpecificCars.add(specificCar);
         }
     }
 
     // this will return rented vehicle
 
-    public void returnVehicle(Car car) {
-        if(rentalCars.contains(car)) {
-            rentalCars.remove(car);
-            availableCars.add(car);
+    public void returnVehicle(SpecificCar specificCar) {
+        if(rentalSpecificCars.contains(specificCar)) {
+            rentalSpecificCars.remove(specificCar);
+            availableSpecificCars.add(specificCar);
         }
     }
+    public void displayRented(){
+        System.out.println("=== Rental Cars ===" );
+        for(SpecificCar specificCar : rentalSpecificCars) {
+            specificCar.displayInfo();
 
+        }
+    }
     // displays available and  rented vehicle
     public void displayInfo() {
-        System.out.println("Available Cars: " + availableCars);
-        for(Car car : availableCars) {
-            car.displayInfo();
-            System.out.println();
+        System.out.println("=== Available Cars === ");
+        for(SpecificCar specificCar : availableSpecificCars) {
+            specificCar.displayInfo();
+            rentalSpecificCars.add(specificCar);
+
         }
-        System.out.println("Rental Cars: " + rentalCars);
-        for(Car car : rentalCars) {
-            car.displayInfo();
-            System.out.println();
-        }
+
     }
 
     //calculate total rental cost
-    public double rentalCost(Car car, int durationRental){
-        double rentalRate = car.getRentalPrice();
-        double totalCost = rentalRate * durationRental;
-        return totalCost;
+    public double rentalCost(SpecificCar specificCar, int durationRental){
+
+        double rentalRate = specificCar.getRentalPrice();
+        return  rentalRate * durationRental ;
     }
+
 
 }

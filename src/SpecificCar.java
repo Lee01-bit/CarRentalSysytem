@@ -1,11 +1,15 @@
-public class Car extends Cars {
+public class SpecificCar extends Vehicles {
 
     private int doorNum;
     private boolean isConvertible;
     private String typeOfFuel;
 
-    public Car(String make, String model, int year, double rentalRate, int doorNum, boolean isConvertible, String typeOfFuel) {
+    public SpecificCar(String make, String model, int year, double rentalRate, int doorNum, boolean isConvertible, String typeOfFuel) {
         super(make, model, year, rentalRate);
+
+        if (typeOfFuel == null || typeOfFuel.isEmpty()) {
+            throw new IllegalArgumentException("Type of fuel cannot be null or empty");
+        }
         this.doorNum = doorNum;
         this.isConvertible = isConvertible;
         this.typeOfFuel = typeOfFuel;
@@ -21,5 +25,8 @@ public class Car extends Cars {
         System.out.println("Convertible: " + isConvertible);
         System.out.println("Fuel Type: " + typeOfFuel);
     }
-
+    @Override
+    public String toString(){
+        return super.toString() + "\nNumber of Doors: " + doorNum +"| Convertible: " + isConvertible +"| Type: " + typeOfFuel ;
+    }
 }

@@ -1,10 +1,13 @@
-public class Cars {
+public class Vehicles {
     private String make;
     private String model;
     private int year;
     private double rentalPrice;
 
-    public Cars(String make, String model, int year, double rentalPrice) {
+    public Vehicles(String make, String model, int year, double rentalPrice) {
+        if (rentalPrice < 0 ){
+            throw new IllegalArgumentException("Rental Price cannot be negative");
+        }
         this.make = make;
         this.model = model;
         this.year = year;
