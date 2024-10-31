@@ -7,10 +7,13 @@ public class SystemRental {
     private final List<SpecificCar> rentalSpecificCars;
     private static List<Motorcycles> availableMotorcycles;
 
+
+
     public SystemRental() {
         availableSpecificCars = new ArrayList<SpecificCar>();
         rentalSpecificCars = new ArrayList<SpecificCar>();
         availableMotorcycles = new ArrayList<Motorcycles>();
+
     }
 
     // this will add vehicles to the rental system
@@ -18,7 +21,8 @@ public class SystemRental {
     public void addCar(SpecificCar car) {
         if (car != null){
             availableSpecificCars.add(car);
-            System.out.println(car.getMake() + " " + car.getModel() + "  " + car.getYear() + "Added to available cars");
+
+            System.out.println(car.getMake() + " " + car.getModel() + "  " + car.getYear());
 
         }else{
             System.out.println("Car is null");
@@ -26,13 +30,7 @@ public class SystemRental {
 
 
     }
-    public void addMotorcycle(Motorcycles motorcycle) {
-      if(motorcycle != null){  availableMotorcycles.add(motorcycle);
-        System.out.println(motorcycle.getMake() + " " + motorcycle.getModel() + "Added to available cars " + motorcycle.getYear());
-    } else {
-          System.out.println("Cannot add a null motorcycle");
-      }
-    }
+
 
     public static List<SpecificCar> getAvailableCars() {
         return availableSpecificCars;
@@ -57,13 +55,7 @@ public class SystemRental {
             availableSpecificCars.add(specificCar);
         }
     }
-    public void displayRented(){
-        System.out.println("=== Rental Cars ===" );
-        for(SpecificCar specificCar : rentalSpecificCars) {
-            specificCar.displayInfo();
 
-        }
-    }
     // displays available and  rented vehicle
     public void displayInfo() {
         System.out.println("=== Available Cars === ");
@@ -74,6 +66,7 @@ public class SystemRental {
         }
 
     }
+
 
     //calculate total rental cost
     public double rentalCost(SpecificCar specificCar, int durationRental){

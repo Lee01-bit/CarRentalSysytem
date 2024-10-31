@@ -24,6 +24,7 @@ public class SpecificCar extends Vehicles {
         System.out.println("Number of Doors: " + doorNum);
         System.out.println("Convertible: " + isConvertible);
         System.out.println("Fuel Type: " + typeOfFuel);
+        System.out.println();
     }
     @Override
     public String toString(){
